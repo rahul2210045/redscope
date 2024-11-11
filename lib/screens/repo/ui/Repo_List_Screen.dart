@@ -41,9 +41,17 @@ class _RepoListScreenState extends State<RepoListScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          backgroundColor: Colors.white,
           title: Text(
             "Owner Information",
-            style: headingH3,
+            style: TextStyle(
+              color: Colors.blueAccent,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
           ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
@@ -55,19 +63,33 @@ class _RepoListScreenState extends State<RepoListScreen> {
               SizedBox(height: 15),
               Text(
                 "Username: ${owner['login']}",
-                style: bodysmall,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
               ),
               Text(
                 "ID: ${owner['id']}",
-                style: bodysmall,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
               ),
             ],
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text("Close",
-                  style: TextStyle(color: primaryColor, fontSize: 16)),
+              child: Text(
+                "Close",
+                style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ],
         );
@@ -91,11 +113,20 @@ class _RepoListScreenState extends State<RepoListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Text(
-            'Repository List',
-            style: headingH2,
-          )),
+        title: Text(
+          'Repository List',
+          style: headingH3.copyWith(color: Colors.white),
+        ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF4A90E2), Color(0xFF56CCF2)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+      ),
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
@@ -109,20 +140,27 @@ class _RepoListScreenState extends State<RepoListScreen> {
                   child: Card(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(12.0),
                     ),
+                    elevation: 4,
                     margin: EdgeInsets.symmetric(
-                        horizontal: screenWidth * 0.03,
-                        vertical: screenHeight * 0.01),
+                      horizontal: screenWidth * 0.03,
+                      vertical: screenHeight * 0.01,
+                    ),
                     child: Padding(
-                      padding: EdgeInsets.all(screenWidth * 0.03),
+                      padding: EdgeInsets.all(screenWidth * 0.04),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(gist['description'] ?? 'No description',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: headingH3),
+                          Text(
+                            gist['description'] ?? 'No description',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: headingH4.copyWith(
+                              color: Color(0xFF4A90E2),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           SizedBox(height: screenHeight * 0.01),
                           Divider(color: Colors.grey[400]),
                           SizedBox(height: screenHeight * 0.01),
@@ -134,15 +172,21 @@ class _RepoListScreenState extends State<RepoListScreen> {
                                 children: [
                                   Text(
                                     "Comments: ${gist['comments']}",
-                                    style: bodyBig,
+                                    style: bodyBig.copyWith(
+                                      color: Colors.grey[600],
+                                    ),
                                   ),
                                   Text(
                                     "Created: ${gist['created_at']}",
-                                    style: bodyBig,
+                                    style: bodyBig.copyWith(
+                                      color: Colors.grey[600],
+                                    ),
                                   ),
                                   Text(
                                     "Updated: ${gist['updated_at']}",
-                                    style: bodyBig,
+                                    style: bodyBig.copyWith(
+                                      color: Colors.grey[600],
+                                    ),
                                   ),
                                 ],
                               ),

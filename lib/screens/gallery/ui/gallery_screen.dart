@@ -12,7 +12,6 @@ class GalleryPage extends StatefulWidget {
 class _GalleryPageState extends State<GalleryPage> {
   final UnsplashService _unsplashService =
       UnsplashService('${dotenv.env['UNSPLASH_API_KEY']}');
-  // 'NJxfZpMa-m4RklhGC5WodaqvyXjxRPXp1UVIBkqR1gE');
   List<dynamic> _images = [];
   int _page = 1;
   final int _perPage = 20;

@@ -26,16 +26,27 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: primaryColor,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFF4A90E2), Color(0xFF56CCF2)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+          ),
           title: Text(
             "Flutter App",
-            style: headingH1.copyWith(fontSize: screenWidth * 0.05),
+            style: headingH1.copyWith(
+              fontSize: screenWidth * 0.05,
+              color: Colors.white,
+            ),
           ),
           actions: [
             IconButton(
               icon: Icon(
                 Icons.bookmark,
-                color: Colors.black,
+                color: Colors.white,
                 size: screenWidth * 0.07,
               ),
               onPressed: () {
@@ -55,6 +66,12 @@ class _HomeScreenState extends State<HomeScreen> {
               _currentIndex = index;
             });
           },
+          backgroundColor: Colors.white,
+          selectedItemColor: Color(0xFF4A90E2),
+          unselectedItemColor: Colors.grey[600],
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.code, size: screenWidth * 0.07),
